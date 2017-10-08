@@ -1,0 +1,7 @@
+<h1><%= @lineup.name %></h1>
+<a href="/lineups/<%= @lineup.id %>/edit"> Edit Lineup </a>
+
+<form action="/lineups/<%= @lineup.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Lineup">
+</form>

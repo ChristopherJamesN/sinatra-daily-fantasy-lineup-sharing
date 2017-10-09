@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  #Add in alerts when a user tries to edit or delete a lineup that they did not create.
+  #Add in an alert when the user does not fill in the lineup name.
+
   get '/users/:id' do
     if !logged_in?
       redirect '/lineups'

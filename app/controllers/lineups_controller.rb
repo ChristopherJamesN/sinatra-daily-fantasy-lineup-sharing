@@ -1,7 +1,7 @@
 class LineupsController < ApplicationController
 
   get '/lineups' do
-    if session[:id] == nil
+    if session[:user_id] == nil
       redirect to '/login'
     end
     @lineups = Lineup.all
@@ -9,7 +9,7 @@ class LineupsController < ApplicationController
   end
 
   get '/lineups/new' do
-    if session[:id] == nil
+    if session[:user_id] == nil
       redirect to '/login'
     end
     erb :'lineups/create_lineup'
@@ -19,13 +19,13 @@ class LineupsController < ApplicationController
     if params[:name] == ''
       redirect to 'lineups/new'
     end
-    @lineup = Lineup.create(name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense], user_id: session[:id])
+    @lineup = Lineup.create(name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
     @user = User.find(@lineup.user_id)
     @user.lineups << @lineup
   end
 
   get '/lineups/:id' do
-    if session[:id] == nil
+    if session[:user_id] == nil
       redirect to '/login'
     end
     @lineup = Lineup.find(params[:id])
@@ -33,11 +33,11 @@ class LineupsController < ApplicationController
   end
 
   get '/lineups/:id/edit' do
-    if session[:id] == nil
+    if session[:user_id] == nil
       redirect to '/login'
     end
     @lineup = Lineup.find(params[:id])
-    if session[:id] != @lineup.user_id
+    if session[:user_id] != @lineup.user_id
       redirect to '/lineups'
     end
     erb :'lineups/edit_lineup'
@@ -53,7 +53,7 @@ class LineupsController < ApplicationController
 
   delete '/lineups/:id/delete' do
     @lineup = Lineup.find(params[:id])
-    if session[:id] != @lineup.user_id
+    if session[:user_id] != @lineup.user_id
       redirect to '/lineups'
     end
     @lineup.delete

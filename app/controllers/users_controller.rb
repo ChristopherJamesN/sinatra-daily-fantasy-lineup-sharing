@@ -9,25 +9,25 @@ class UsersController < ApplicationController
     if !@user.nil? && @user == current_user
       erb :'users/show'
     else
-      redirect '/bags'
+      redirect '/lineups'
     end
   end
 
   get '/signup' do
     if !session[:user_id]
-      erb :'users/new'
+      erb :'users/create_user'
     else
-      redirect to '/clubs'
+      redirect to '/lineups'
     end
   end
 
   post '/signup' do
-    if params[:username] == "" || params[:password] == ""
+    if params[:username] == "" || params[:password] == "" || params[:email] == ""
       redirect to '/signup'
     else
-      @user = User.create(:username => params[:username], :password => params[:password])
+      @user = User.create(:username => params[:username], :password => params[:password], :email => params[:email])
       session[:user_id] = @user.id
-      redirect '/bags'
+      redirect '/lineups'
     end
   end
 
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if !session[:user_id]
       erb :'users/login'
     else
-      redirect '/bags'
+      redirect '/lineups'
     end
   end
 
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/bags"
+      redirect "/lineups"
     else
       redirect to '/signup'
     end

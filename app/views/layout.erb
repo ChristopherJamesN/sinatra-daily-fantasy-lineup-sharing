@@ -6,6 +6,8 @@
   </head>
 
   <body>
+    <div class="container">
+      
     <nav>
       <% if logged_in? %>
 
@@ -19,7 +21,7 @@
       <%end %>
 
     </nav>
-    <div class="container">
+
       <h1>Daily Fantasy Lineup Sharing</h1>
       <% if !@error_message.nil? %>
       <div class="alert alert-warning">

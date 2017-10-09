@@ -19,8 +19,8 @@ class LineupsController < ApplicationController
     if params[:name] == ''
       redirect to 'lineups/new'
     end
-    @lineup = Lineup.create(name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
-    redirect to 'lineups'
+    @lineup = Lineup.create(user_id: session[:user_id], name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
+    redirect to "users/#{current_user.id}"
   end
 
   get '/lineups/:id' do
@@ -45,6 +45,7 @@ class LineupsController < ApplicationController
   post '/lineups/:id' do
     @lineup = Lineup.find(params[:id])
     @lineup.update(name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
+    redirect to "users/#{current_user.id}"
   end
 
   delete '/lineups/:id/delete' do
@@ -53,6 +54,6 @@ class LineupsController < ApplicationController
       redirect to '/lineups'
     end
     @lineup.delete
-    redirect to '/lineups'
+    redirect to "users/#{current_user.id}"
   end
 end

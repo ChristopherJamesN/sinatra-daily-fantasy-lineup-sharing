@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
 
-  #Add in alerts when a user tries to edit or delete a lineup that they did not create.
-  #Add in an alert when the user does not fill in the lineup name.
-  #Make sure lineups update correctly and match user_id, right now seems like updates are just creating a new lineup and not enough paramaters can be saved when creating a new lineup.
+  #Add in an alert when the user does not fill in the lineup name, or when they try to login with invalid credentials.
 
   get '/users/:id' do
     if !logged_in?
@@ -27,8 +25,10 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
+      flash[:empty_fields] = "Please fill in all signup fields."
       redirect to '/signup'
     elsif User.find_by(username: params[:username]) != nil
+      flash[:taken_username] = "Sorry, that username is already taken."
       redirect to '/signup'
     else
       @user = User.create(:username => params[:username], :password => params[:password], :email => params[:email])
@@ -51,6 +51,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/lineups"
     else
+      flash[:credentials] = "Sorry, those credentials don't match our records."
       redirect to '/signup'
     end
   end
@@ -58,6 +59,7 @@ class UsersController < ApplicationController
   get '/logout' do
     if session[:user_id] != nil
       session.destroy
+      flash[:outlog] = "You have been logged out."
       redirect to '/login'
     else
       redirect to '/'

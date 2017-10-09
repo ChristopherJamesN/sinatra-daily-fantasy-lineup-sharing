@@ -17,9 +17,11 @@ class LineupsController < ApplicationController
 
   post '/lineups' do
     if params[:name] == ''
+      flash[:lineup_name_empty] = "Your lineup must have a name."
       redirect to 'lineups/new'
     end
     @lineup = Lineup.create(user_id: session[:user_id], name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
+    flash[:lineup_created] = "Your lineup has been created."
     redirect to "users/#{current_user.id}"
   end
 
@@ -45,9 +47,11 @@ class LineupsController < ApplicationController
   post '/lineups/:id' do
     @lineup = Lineup.find(params[:id])
     if params[:name] == ''
+      flash[:lineup_name_at_update] = "Your lineup must have a name."
       redirect to "lineups/#{@lineup.id}/edit"
     end
     @lineup.update(name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
+    flash[:lineup_updated] = "Your lineup has been updated."
     redirect to "users/#{current_user.id}"
   end
 
@@ -57,6 +61,7 @@ class LineupsController < ApplicationController
       redirect to '/lineups'
     end
     @lineup.delete
+    flash[:lineup_deleted] = "Your lineup has been deleted."
     redirect to "users/#{current_user.id}"
   end
 end

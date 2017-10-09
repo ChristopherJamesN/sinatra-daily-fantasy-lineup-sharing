@@ -8,8 +8,8 @@ Specs:
 - [x] Include user accounts
 - [x] Ensure that users can't modify content created by other users
 - [x] Include user input validations (A user cannot enter a lineup without a lineup name, however the other fields can be blank)
-- [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Display validation failures to user with error message (User is alerted when login credentials are invalid, username is taken, or lineup name is empty.)
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits

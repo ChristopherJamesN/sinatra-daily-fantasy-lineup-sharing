@@ -1,4 +1,5 @@
 <h1>See your lineups below:</h1>
+
 <% @lineups.each do |lineup| %>
   <%= lineup.name %>
   <%= lineup.quarterback %>
@@ -11,6 +12,14 @@
   <%= lineup.flex %>
   <%= lineup.defense %>
 
+  <br></br>
+  <a href="/lineups/<%= lineup.id %>">View/Edit/Delete Lineup</a>
+  <br></br>
+
 <% end %>
+
+<br></br>
 <a href="/lineups/new">Create a new Lineup</a>
+
+<br></br>
 <a href="/logout">Logout</a>

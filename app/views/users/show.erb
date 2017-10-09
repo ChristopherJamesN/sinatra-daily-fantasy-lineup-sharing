@@ -1,4 +1,16 @@
 <h1><%= @user.username %></h1>
 <% @user.lineups.each do |lineup| %>
   <%= lineup.name %>
+  <%= lineup.quarterback %>
+  <%= lineup.runningback_one %>
+  <%= lineup.runningback_two %>
+  <%= lineup.widereceiver_one %>
+  <%= lineup.widereceiver_two %>
+  <%= lineup.widereceiver_three %>
+  <%= lineup.tightend %>
+  <%= lineup.flex %>
+  <%= lineup.defense %>
+  <br></br>
+  <a href="/lineups/<%= lineup.id %>">View/Edit/Delete Lineup</a>
+  <br></br>
 <% end %>

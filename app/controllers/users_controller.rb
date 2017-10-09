@@ -1,58 +1,62 @@
 class UsersController < ApplicationController
 
-  get '/signup' do
-    if session[:id] != nil
-      redirect to '/lineups'
+  get '/users/:id' do
+    if !logged_in?
+      redirect '/lineups'
     end
-    erb :'users/create_user'
+
+    @user = User.find(params[:id])
+    if !@user.nil? && @user == current_user
+      erb :'users/show'
+    else
+      redirect '/bags'
+    end
+  end
+
+  get '/signup' do
+    if !session[:user_id]
+      erb :'users/new'
+    else
+      redirect to '/clubs'
+    end
   end
 
   post '/signup' do
-    if params[:username] == ''
+    if params[:username] == "" || params[:password] == ""
       redirect to '/signup'
+    else
+      @user = User.create(:username => params[:username], :password => params[:password])
+      session[:user_id] = @user.id
+      redirect '/bags'
     end
-    if params[:email] == ''
-      redirect to '/signup'
-    end
-    if params[:password] == ''
-      redirect to '/signup'
-    end
-    @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-    session[:id] = @user.id
-    redirect to '/lineups'
   end
 
   get '/login' do
-    if session[:id] != nil
-      redirect to '/lineups'
+    @error_message = params[:error]
+    if !session[:user_id]
+      erb :'users/login'
+    else
+      redirect '/bags'
     end
-    erb :'users/login'
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
-    if @user.authenticate(params[:password]) == false
-      redirect to 'login'
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/bags"
+    else
+      redirect to '/signup'
     end
-    session[:id] = @user.id
-    redirect to '/lineups'
   end
 
   get '/logout' do
-    if session[:id] == nil
+    if session[:user_id] != nil
+      session.destroy
       redirect to '/login'
+    else
+      redirect to '/'
     end
-    session.clear
-    redirect to '/login'
-  end
-
-  get "/users/:slug" do
-    @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
-  end
-
-  get '/' do
-    erb :'/index'
   end
 
 end

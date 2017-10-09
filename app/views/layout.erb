@@ -7,10 +7,11 @@
 
   <body>
     <div class="container">
-      
+
     <nav>
       <% if logged_in? %>
 
+        <a href="/lineups"> All Lineups </a>
         <a href="/lineups/new"> Create Lineup </a>
         <a href="/logout"> Log Out </a>
         <p>Welcome, <%=current_user.username %></p>
@@ -23,10 +24,6 @@
     </nav>
 
       <h1>Daily Fantasy Lineup Sharing</h1>
-      <% if !@error_message.nil? %>
-      <div class="alert alert-warning">
-        <%= @error_message %>
-      </div>
     <% end %>
   </div>
     <%= yield %>

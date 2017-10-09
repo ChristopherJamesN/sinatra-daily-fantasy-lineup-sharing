@@ -20,10 +20,7 @@ class LineupsController < ApplicationController
       redirect to 'lineups/new'
     end
     @lineup = Lineup.create(name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
-    @lineup.user_id = current_user.id
-    @lineup.save
-    @user = User.find(@lineup.user_id)
-    @user.lineups << @lineup
+    redirect to 'lineups'
   end
 
   get '/lineups/:id' do

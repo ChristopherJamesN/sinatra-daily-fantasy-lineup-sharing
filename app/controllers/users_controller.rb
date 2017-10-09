@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  #Add in an alert when the user does not fill in the lineup name, or when they try to login with invalid credentials.
-
   get '/users/:id' do
     if !logged_in?
       redirect '/lineups'

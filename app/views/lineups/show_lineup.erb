@@ -1,22 +1,24 @@
-<h2><%= @lineup.name %></h2>
-<h2><%= @lineup.quarterback %></h2>
-<h2><%= @lineup.runningback_one %></h2>
-<h2><%= @lineup.runningback_two %></h2>
-<h2><%= @lineup.widereceiver_one %></h2>
-<h2><%= @lineup.widereceiver_two %></h2>
-<h2><%= @lineup.widereceiver_three %></h2>
-<h2><%= @lineup.tightend %></h2>
-<h2><%= @lineup.flex %></h2>
-<h2><%= @lineup.defense %></h2>
-  <br></br>
+<div class="container">
+  <h2><%= @lineup.name %></h2>
+  <h2><%= @lineup.quarterback %></h2>
+  <h2><%= @lineup.runningback_one %></h2>
+  <h2><%= @lineup.runningback_two %></h2>
+  <h2><%= @lineup.widereceiver_one %></h2>
+  <h2><%= @lineup.widereceiver_two %></h2>
+  <h2><%= @lineup.widereceiver_three %></h2>
+  <h2><%= @lineup.tightend %></h2>
+  <h2><%= @lineup.flex %></h2>
+  <h2><%= @lineup.defense %></h2>
+    <br></br>
 
-<a href="/lineups">Back to All Lineups</a>
-  <br></br>
+  <a href="/lineups">Back to All Lineups</a>
+    <br></br>
 
-<a href="/lineups/<%= @lineup.id %>/edit"> Edit Lineup </a>
-  <br></br>
+  <a href="/lineups/<%= @lineup.id %>/edit"> Edit Lineup </a>
+    <br></br>
 
-<form action="/lineups/<%= @lineup.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Lineup">
-</form>
+  <form action="/lineups/<%= @lineup.id %>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Lineup">
+  </form>
+</div>

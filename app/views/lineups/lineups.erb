@@ -1,25 +1,27 @@
-<h1>See your lineups below:</h1>
+<div class="container">
+  <h1>See your lineups below:</h1>
 
-<% @lineups.each do |lineup| %>
-  <%= lineup.name %>
-  <%= lineup.quarterback %>
-  <%= lineup.runningback_one %>
-  <%= lineup.runningback_two %>
-  <%= lineup.widereceiver_one %>
-  <%= lineup.widereceiver_two %>
-  <%= lineup.widereceiver_three %>
-  <%= lineup.tightend %>
-  <%= lineup.flex %>
-  <%= lineup.defense %>
+  <% @lineups.each do |lineup| %>
+    <%= lineup.name %>
+    <%= lineup.quarterback %>
+    <%= lineup.runningback_one %>
+    <%= lineup.runningback_two %>
+    <%= lineup.widereceiver_one %>
+    <%= lineup.widereceiver_two %>
+    <%= lineup.widereceiver_three %>
+    <%= lineup.tightend %>
+    <%= lineup.flex %>
+    <%= lineup.defense %>
+
+    <br></br>
+    <a href="/lineups/<%= lineup.id %>">View/Edit/Delete Lineup</a>
+    <br></br>
+
+  <% end %>
 
   <br></br>
-  <a href="/lineups/<%= lineup.id %>">View/Edit/Delete Lineup</a>
+  <a href="/lineups/new">Create a new Lineup</a>
+
   <br></br>
-
-<% end %>
-
-<br></br>
-<a href="/lineups/new">Create a new Lineup</a>
-
-<br></br>
-<a href="/logout">Logout</a>
+  <a href="/logout">Logout</a>
+</div>

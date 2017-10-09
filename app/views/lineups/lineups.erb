@@ -13,8 +13,10 @@
     <%= lineup.flex %>
     <%= lineup.defense %>
 
-    <br></br>
-    <a href="/lineups/<%= lineup.id %>">View/Edit/Delete Lineup</a>
+    <% if lineup.user_id == current_user.id %>
+      <h4>You own this lineup</h4>
+    <% end %>
+    <a href="/lineups/<%= lineup.id %>">View Lineup</a>
     <br></br>
 
   <% end %>

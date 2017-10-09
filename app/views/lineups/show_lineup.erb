@@ -1,19 +1,17 @@
 <div class="container">
-  <h2><%= @lineup.name %></h2>
-  <h2><%= @lineup.quarterback %></h2>
-  <h2><%= @lineup.runningback_one %></h2>
-  <h2><%= @lineup.runningback_two %></h2>
-  <h2><%= @lineup.widereceiver_one %></h2>
-  <h2><%= @lineup.widereceiver_two %></h2>
-  <h2><%= @lineup.widereceiver_three %></h2>
-  <h2><%= @lineup.tightend %></h2>
-  <h2><%= @lineup.flex %></h2>
-  <h2><%= @lineup.defense %></h2>
+  <h2>Lineup Name: <%= @lineup.name %></h2>
+  <h2>Quarterback: <%= @lineup.quarterback %></h2>
+  <h2>Running Back One: <%= @lineup.runningback_one %></h2>
+  <h2>Running Back Two: <%= @lineup.runningback_two %></h2>
+  <h2>Wide Receiver One: <%= @lineup.widereceiver_one %></h2>
+  <h2>Wide Receiver Two: <%= @lineup.widereceiver_two %></h2>
+  <h2>Wide Receiver Three: <%= @lineup.widereceiver_three %></h2>
+  <h2>Tightend: <%= @lineup.tightend %></h2>
+  <h2>Flex: <%= @lineup.flex %></h2>
+  <h2>Defense: <%= @lineup.defense %></h2>
     <br></br>
 
-  <a href="/lineups">Back to All Lineups</a>
-    <br></br>
-
+  <% if @lineup.user_id == current_user.id %>
   <a href="/lineups/<%= @lineup.id %>/edit"> Edit Lineup </a>
     <br></br>
 
@@ -21,4 +19,7 @@
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete Lineup">
   </form>
+  <% else %>
+  <a href="/lineups"> Back to All Lineups</a>
+  <% end %>
 </div>

@@ -58,7 +58,7 @@
 
   <form action="/lineups/<%= @lineup.id %>/delete" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Lineup">
+    <input class="btn btn-primary" type="submit" value="Delete Lineup">
   </form>
   <% else %>
   <a href="/lineups"> Back to All Lineups</a>

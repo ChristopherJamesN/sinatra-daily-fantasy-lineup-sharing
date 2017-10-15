@@ -1,8 +1,8 @@
 <div class="container well-lg">
   <h2>All Lineups:</h2>
-  <ul>
+  <ul class="list-group">
     <% @lineups.each do |lineup| %>
-      <li>
+      <a href="/lineups/<%= lineup.id %>" class="list-group-item modal-sm">
       <%= lineup.name %>
       <br>
       <%= lineup.quarterback %>
@@ -14,15 +14,13 @@
       <%= lineup.tightend %>
       <%= lineup.flex %>
       <%= lineup.defense %>
-      <br>
-      <a href="/lineups/<%= lineup.id %>">View Lineup</a>
-      <br>
 
       <% if lineup.user_id == current_user.id %>
         <p><strong>You own this lineup</strong></p>
       <% end %>
 
-    </li>
+      </a>
+
     <br>
     <% end %>
   </ul>

@@ -1,8 +1,8 @@
 <div class="container well-lg">
   <h2>Your Lineups</h2>
-  <ul>
+  <ul class="list-group">
   <% @user.lineups.each do |lineup| %>
-    <li>
+    <a href="/lineups/<%= lineup.id %>" class="list-group-item modal-sm">
     <%= lineup.name %>
     <br>
     <%= lineup.quarterback %>
@@ -14,10 +14,8 @@
     <%= lineup.tightend %>
     <%= lineup.flex %>
     <%= lineup.defense %>
+    </a>
     <br>
-    <a href="/lineups/<%= lineup.id %>">View/Edit/Delete Lineup</a>
-    <br>
-  </li>
   <% end %>
   </ul>
 </div>

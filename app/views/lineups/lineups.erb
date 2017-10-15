@@ -1,24 +1,29 @@
 <div class="container">
-  <h1>All Lineups:</h1>
+  <h2>All Lineups:</h2>
+  <ul>
+    <% @lineups.each do |lineup| %>
+      <li>
+      <%= lineup.name %>
+      <br>
+      <%= lineup.quarterback %>
+      <%= lineup.runningback_one %>
+      <%= lineup.runningback_two %>
+      <%= lineup.widereceiver_one %>
+      <%= lineup.widereceiver_two %>
+      <%= lineup.widereceiver_three %>
+      <%= lineup.tightend %>
+      <%= lineup.flex %>
+      <%= lineup.defense %>
+      <br>
+      <a href="/lineups/<%= lineup.id %>">View Lineup</a>
+      <br>
 
-  <% @lineups.each do |lineup| %>
-    <%= lineup.name %>
-    <%= lineup.quarterback %>
-    <%= lineup.runningback_one %>
-    <%= lineup.runningback_two %>
-    <%= lineup.widereceiver_one %>
-    <%= lineup.widereceiver_two %>
-    <%= lineup.widereceiver_three %>
-    <%= lineup.tightend %>
-    <%= lineup.flex %>
-    <%= lineup.defense %>
+      <% if lineup.user_id == current_user.id %>
+        <p><strong>You own this lineup</strong></p>
+      <% end %>
 
-    <% if lineup.user_id == current_user.id %>
-      <h4>You own this lineup</h4>
+    </li>
+    <br>
     <% end %>
-    <a href="/lineups/<%= lineup.id %>">View Lineup</a>
-    <br></br>
-
-  <% end %>
-
+  </ul>
 </div>

@@ -1,7 +1,10 @@
 <div class="container">
-  <h1>Your Lineups</h1>
+  <h2>Your Lineups</h2>
+  <ul>
   <% @user.lineups.each do |lineup| %>
+    <li>
     <%= lineup.name %>
+    <br>
     <%= lineup.quarterback %>
     <%= lineup.runningback_one %>
     <%= lineup.runningback_two %>
@@ -11,8 +14,10 @@
     <%= lineup.tightend %>
     <%= lineup.flex %>
     <%= lineup.defense %>
-    <br></br>
+    <br>
     <a href="/lineups/<%= lineup.id %>">View/Edit/Delete Lineup</a>
-    <br></br>
+    <br>
+  </li>
   <% end %>
+  </ul>
 </div>

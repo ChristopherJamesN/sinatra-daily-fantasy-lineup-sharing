@@ -1,15 +1,56 @@
 <div class="container">
-  <h2>Lineup Name: <%= @lineup.name %></h2>
-  <h2>Quarterback: <%= @lineup.quarterback %></h2>
-  <h2>Running Back One: <%= @lineup.runningback_one %></h2>
-  <h2>Running Back Two: <%= @lineup.runningback_two %></h2>
-  <h2>Wide Receiver One: <%= @lineup.widereceiver_one %></h2>
-  <h2>Wide Receiver Two: <%= @lineup.widereceiver_two %></h2>
-  <h2>Wide Receiver Three: <%= @lineup.widereceiver_three %></h2>
-  <h2>Tightend: <%= @lineup.tightend %></h2>
-  <h2>Flex: <%= @lineup.flex %></h2>
-  <h2>Defense: <%= @lineup.defense %></h2>
-    <br></br>
+
+  <div class="row">
+    <div class="col-md-3"><h2>Lineup Name:</h2></div>
+    <div class="col-md-3"><h2><%= @lineup.name %></h2></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Quarterback:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.quarterback %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Running Back One:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.runningback_one %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Running Back Two:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.runningback_two %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Wide Receiver One:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.widereceiver_one %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Wide Receiver Two:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.widereceiver_two %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Wide Receiver Three:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.widereceiver_three %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Tightend:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.tightend %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Flex:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.flex %></h3></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"><h3>Defense:</h3></div>
+    <div class="col-md-3"><h3><%= @lineup.defense %></h3></div>
+  </div>
+
+  <br></br>
 
   <% if @lineup.user_id == current_user.id %>
   <a href="/lineups/<%= @lineup.id %>/edit"> Edit Lineup </a>

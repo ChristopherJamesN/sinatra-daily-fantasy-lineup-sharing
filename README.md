@@ -3,7 +3,7 @@ A web application that can be used to share daily fantasy football lineups.
 
 ## Installation
 To test out this application locally, fork and clone the repo.
-  $ git clone your-local-fork-here
+`$ git clone your-local-fork-here`
 
 ## Usage
 Run `rake db:migrate`, `shotgun`, and navigate to the appropriate location in your browser to interact with the application.

@@ -1,47 +1,56 @@
 <div class="container">
-  <h1>Create a new Lineup</h1>
+  <h2>Create a new Lineup</h2>
 
   <form action="/lineups" method="POST">
+    <div class="form-group">
+      <label>Lineup Name:</label>
+      <input type="text" class="form-control" name="name" id="name">
+    </div>
 
-    <label>Lineup Name:</label>
-    <input type="text" name="name" id="name">
-    <br></br>
+    <div class="form-group">
+      <label>Quarterback:</label>
+      <input type="text" class="form-control" name="quarterback" id="quarterback">
+    </div>
 
-    <label>Quarterback:</label>
-    <input type="text" name="quarterback" id="quarterback">
-    <br></br>
+    <div class="form-group">
+      <label>First Running Back:</label>
+      <input type="text" class="form-control" name="runningback_one" id="runningback_one">
+    </div>
 
-    <label>First Running Back:</label>
-    <input type="text" name="runningback_one" id="runningback_one">
-    <br></br>
+    <div class="form-group">
+      <label>Second Running Back:</label>
+      <input type="text" class="form-control" name="runningback_two" id="runningback_two">
+    </div>
 
-    <label>Second Running Back:</label>
-    <input type="text" name="runningback_two" id="runningback_two">
-    <br></br>
+    <div class="form-group">
+      <label>First Wide Receiver:</label>
+      <input type="text" class="form-control" name="widereceiver_one" id="widereceiver_one">
+    </div>
 
-    <label>First Wide Receiver:</label>
-    <input type="text" name="widereceiver_one" id="widereceiver_one">
-    <br></br>
+    <div class="form-group">
+      <label>Second Wide Receiver:</label>
+      <input type="text" class="form-control" name="widereceiver_two" id="widereceiver_two">
+    </div>
 
-    <label>Second Wide Receiver:</label>
-    <input type="text" name="widereceiver_two" id="widereceiver_two">
-    <br></br>
+    <div class="form-group">
+      <label>Third Wide Receiver:</label>
+      <input type="text" class="form-control" name="widereceiver_three" id="widereceiver_three">
+    </div>
 
-    <label>Third Wide Receiver:</label>
-    <input type="text" name="widereceiver_three" id="widereceiver_three">
-    <br></br>
+    <div class="form-group">
+      <label>Tightend:</label>
+      <input type="text" class="form-control" name="tightend" id="tightend">
+    </div>
 
-    <label>Tightend:</label>
-    <input type="text" name="tightend" id="tightend">
-    <br></br>
+    <div class="form-group">
+      <label>Flex:</label>
+      <input type="text" class="form-control" name="flex" id="flex">
+    </div>
 
-    <label>Flex:</label>
-    <input type="text" name="flex" id="flex">
-    <br></br>
-
-    <label>Defense:</label>
-    <input type="text" name="defense" id="defense">
-    <br></br>
+    <div class="form-group">
+      <label>Defense:</label>
+      <input type="text" class="form-control" name="defense" id="defense">
+    </div>
 
     <input type="submit" value="create">
   </form>

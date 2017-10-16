@@ -3,12 +3,11 @@
 
   <form action="/signup" method="POST">
     <div class="form-group">
-      <p><input type="text" class="form-control modal-sm" name="username" placeholder="Username:"></p>
-      <p><input type="text" class="form-control modal-sm" name="password" placeholder="Password:"></p>
-      <p><input type="text" class="form-control modal-sm" name="email" placeholder="Email:"></p>
+      <p><input type="text" class="form-control modal-sm" name="user[username]" placeholder="Username:"></p>
+      <p><input type="text" class="form-control modal-sm" name="user[email]" placeholder="Email:"></p>
+      <p><input type="password" class="form-control modal-sm" name="user[password]" placeholder="Password:"></p>
     </div>
     <input class="btn btn-primary" type="submit" value="Sign Up">
   </form>
   <br></br>
-
 </div>

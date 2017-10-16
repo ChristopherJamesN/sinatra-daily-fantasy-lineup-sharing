@@ -1,42 +1,37 @@
 class LineupsController < ApplicationController
 
   get '/lineups' do
-    if session[:user_id] == nil
-      redirect to '/login'
-    end
+    authenticate_user
     @lineups = Lineup.all
     erb :'lineups/lineups'
   end
 
   get '/lineups/new' do
-    if session[:user_id] == nil
-      redirect to '/login'
-    end
+    authenticate_user
     erb :'lineups/create_lineup'
   end
 
   post '/lineups' do
-    if params[:name] == ''
-      flash[:lineup_name_empty] = "Your lineup must have a name."
-      redirect to 'lineups/new'
+    authenticate_user
+    @lineup = current_user.lineups.build(name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
+    #create a nested hash here to reduce line length
+    if @lineup.save
+      flash[:lineup_created] = "Your lineup has been created."
+      redirect to "/users/#{current_user.id}"
+    else
+      flash[:error] = @lineup.errors.full_messages.join(', ')
+      redirect to "/lineups/new"
     end
-    @lineup = Lineup.create(user_id: session[:user_id], name: params[:name], quarterback: params[:quarterback], runningback_one: params[:runningback_one], runningback_two: params[:runningback_two], widereceiver_one: params[:widereceiver_one], widereceiver_two: params[:widereceiver_two], widereceiver_three: params[:widereceiver_three], tightend: params[:tightend], flex: params[:flex], defense: params[:defense])
-    flash[:lineup_created] = "Your lineup has been created."
-    redirect to "users/#{current_user.id}"
   end
 
   get '/lineups/:id' do
-    if session[:user_id] == nil
-      redirect to '/login'
-    end
+    authenticate_user
     @lineup = Lineup.find(params[:id])
     erb :'lineups/show_lineup'
   end
 
   get '/lineups/:id/edit' do
-    if session[:user_id] == nil
-      redirect to '/login'
-    end
+    authenticate_user
     @lineup = Lineup.find(params[:id])
     if session[:user_id] != @lineup.user_id
       redirect to '/lineups'
@@ -45,6 +40,7 @@ class LineupsController < ApplicationController
   end
 
   post '/lineups/:id' do
+    authenticate_user
     @lineup = Lineup.find(params[:id])
     if params[:name] == ''
       flash[:lineup_name_at_update] = "Your lineup must have a name."
@@ -56,6 +52,7 @@ class LineupsController < ApplicationController
   end
 
   delete '/lineups/:id/delete' do
+    authenticate_user
     @lineup = Lineup.find(params[:id])
     if session[:user_id] != @lineup.user_id
       redirect to '/lineups'

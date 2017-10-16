@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
 
   get '/users/:id' do
-    if !logged_in?
-      redirect '/lineups'
-    end
-
+    authenticate_user
     @user = User.find(params[:id])
-    if !@user.nil? && @user == current_user
+    if @user && @user == current_user
       erb :'users/show'
     else
       redirect '/lineups'
@@ -22,16 +19,13 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username] == "" || params[:password] == "" || params[:email] == ""
-      flash[:empty_fields] = "Please fill in all signup fields."
-      redirect to '/signup'
-    elsif User.find_by(username: params[:username]) != nil
-      flash[:taken_username] = "Sorry, that username is already taken."
-      redirect to '/signup'
-    else
-      @user = User.create(:username => params[:username], :password => params[:password], :email => params[:email])
+    @user = User.new(params[:user])
+    if @user.save
       session[:user_id] = @user.id
       redirect '/lineups'
+    else
+      flash[:error] = @user.errors.full_messages.join(', ')
+      redirect to '/signup'
     end
   end
 
